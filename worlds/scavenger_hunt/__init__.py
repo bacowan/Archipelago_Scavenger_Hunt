@@ -3,8 +3,8 @@
 import settings
 import typing
 from .options import ScavengerHuntOptions
-from .items import mygame_items
-from .locations import mygame_locations
+from .items import all_items
+from .locations import all_locations
 from worlds.AutoWorld import World
 from BaseClasses import Region, Location, Entrance, Item, RegionType, ItemClassification
 
@@ -13,17 +13,9 @@ class ScavengerHuntWorld(World):
     game = "Scavenger Hunt"
     options_dataclass = ScavengerHuntOptions
     options: ScavengerHuntOptions
+    origin_region_name = "Outside"
 
     item_name_to_id = {name: id for
-                       id, name in enumerate(mygame_items, base_id)}
+                       id, name in enumerate(all_items)}
     location_name_to_id = {name: id for
-                           id, name in enumerate(mygame_locations, base_id)}
-
-    item_name_groups = {
-        "weapons": {"sword", "lance"},
-    }
-
-    item_name_to_id = {name: id for
-                       id, name in enumerate(mygame_items, base_id)}
-    location_name_to_id = {name: id for
-                           id, name in enumerate(mygame_locations, base_id)}
+                           id, name in enumerate(all_locations)}
