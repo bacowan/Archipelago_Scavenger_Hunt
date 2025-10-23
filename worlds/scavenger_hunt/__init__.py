@@ -1,9 +1,10 @@
 import settings
 import typing
 from .options import ScavengerHuntOptions
-from .items import all_items
+from .items import all_items, ScavengerHuntItem, item_classifications
 from .locations import all_locations
 from worlds.AutoWorld import World
+
 
 class ScavengerHuntWorld(World):
     """IRL Scavenger Hunt in Archipelago"""
@@ -15,4 +16,7 @@ class ScavengerHuntWorld(World):
     item_name_to_id = {name: id for
                        id, name in enumerate(all_items)}
     location_name_to_id = {name: id for
-                           id, name in enumerate(all_locations)}
+                       id, name in enumerate(all_locations)}
+
+    def create_item(self, item: str) -> ScavengerHuntItem:
+        return ScavengerHuntItem(item, item_classifications[item], self.item_name_to_id[item], self.player)

@@ -8,10 +8,11 @@ class ScavengerHuntItem(Item):
 class ScavengerHuntMoneyItem(ScavengerHuntItem):
     amount: int
 
-AllItems = Literal[
-    "Transit Fare",
-    "Indoor Key",
-    "GPS"
-]
+item_classifications: dict[str, ItemClassification] = {
+    "Small Transit Fare": ItemClassification.progression_skip_balancing,
+    "Large Transit Fare": ItemClassification.progression_skip_balancing,
+    "Indoor Key": ItemClassification.progression,
+    "GPS": ItemClassification.progression
+}
 
-all_items = get_args(AllItems)
+all_items = item_classifications.keys()

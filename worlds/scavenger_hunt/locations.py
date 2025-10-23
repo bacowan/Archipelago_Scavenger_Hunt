@@ -1,12 +1,10 @@
 from typing import Literal, get_args
 from BaseClasses import Location
+from worlds.scavenger_hunt.constants import MAX_CHECKS
+
 
 class ScavengerHuntLocation(Location):
     game = "Scavenger Hunt"
 
-
-
-AllLocations = Literal[
-    "Custom Location"
-]
-all_locations = get_args(AllLocations)
+# checks need to be known at compile time, so a bunch are generated right off the bat with numbered names
+all_locations = ["Check " + str(n + 1) for n in range(1, MAX_CHECKS)]
