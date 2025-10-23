@@ -19,7 +19,7 @@ class TotalTransitFare(FreeText):
     def __init__(self, value: str):
         if not isPositiveNumber(value):
             raise Exception("Total Transit Fare should be a positive number.")
-        super().__init__(self, value)
+        super().__init__(value)
 
 class CurrencyName(FreeText):
     # Name of the currency
@@ -38,13 +38,13 @@ class Checks(OptionDict):
     # A list of all checks that can be done
     display_name = "Checks"
     schema = custom_check_schema
-    default = [
-        { "name": "Capsule machine purchase", "found_indoors": True, "found_outdoors": True },
-        { "name": "Convenience store purchase", "found_indoors": True, "found_outdoors": False },
-        { "name": "Decorative Manhole Cover", "found_indoors": False, "found_outdoors": True },
-        { "name": "Station Stamp", "found_indoors": True, "found_outdoors": False },
-        { "name": "Two of the same store in eyesight", "found_indoors": False, "found_outdoors": True },
-    ]
+    default = {
+        "Capsule machine purchase": { "found_indoors": True, "found_outdoors": True },
+        "Convenience store purchase": {"found_indoors": True, "found_outdoors": False},
+        "Decorative Manhole Cover": {"found_indoors": False, "found_outdoors": True},
+        "Station Stamp": {"found_indoors": True, "found_outdoors": False},
+        "Two of the same store in eyesight": {"found_indoors": False, "found_outdoors": True},
+    }
 
 
 
