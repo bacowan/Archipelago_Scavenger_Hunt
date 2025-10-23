@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 
-from Options import FreeText, Range, PerGameCommonOptions
+from Options import FreeText, Range, PerGameCommonOptions, OptionDict
+from worlds.scavenger_hunt.custom_check_schema import custom_check_schema
+
 
 def isPositiveNumber(val):
     try:
@@ -32,9 +34,23 @@ class CurrencyGranularity(Range):
     range_start = 0
     range_end = 2
 
+class Checks(OptionDict):
+    # A list of all checks that can be done
+    display_name = "Checks"
+    schema = custom_check_schema
+    default = [
+        { "name": "Capsule machine purchase", "found_indoors": True, "found_outdoors": True },
+        { "name": "Convenience store purchase", "found_indoors": True, "found_outdoors": False },
+        { "name": "Decorative Manhole Cover", "found_indoors": False, "found_outdoors": True },
+        { "name": "Station Stamp", "found_indoors": True, "found_outdoors": False },
+        { "name": "Two of the same store in eyesight", "found_indoors": False, "found_outdoors": True },
+    ]
+
+
 
 @dataclass
 class ScavengerHuntOptions(PerGameCommonOptions):
     total_transit_fare: TotalTransitFare
     currency_name: CurrencyName
     currency_granularity: CurrencyGranularity
+    checks: Checks

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Literal
+from typing import Literal, get_args
 from BaseClasses import Item, ItemClassification
 
 class ScavengerHuntItem(Item):
@@ -8,7 +8,10 @@ class ScavengerHuntItem(Item):
 class ScavengerHuntMoneyItem(ScavengerHuntItem):
     amount: int
 
-all_items = Literal[
+AllItems = Literal[
     "Transit Fare",
-    "Indoor Key"
+    "Indoor Key",
+    "GPS"
 ]
+
+all_items = get_args(AllItems)

@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, get_args
 from BaseClasses import Location
 
 class ScavengerHuntLocation(Location):
@@ -6,8 +6,7 @@ class ScavengerHuntLocation(Location):
 
 
 
-all_locations = Literal[
-    "Capsule Machine Purchase",
-    "Convenience Store Snack Purchase",
-    "Decorated Manhole"
+AllLocations = Literal[
+    "Custom Location"
 ]
+all_locations = get_args(AllLocations)

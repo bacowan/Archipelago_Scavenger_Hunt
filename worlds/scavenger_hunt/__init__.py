@@ -1,12 +1,9 @@
-# world/mygame/__init__.py
-
 import settings
 import typing
 from .options import ScavengerHuntOptions
 from .items import all_items
 from .locations import all_locations
 from worlds.AutoWorld import World
-from BaseClasses import Region, Location, Entrance, Item, RegionType, ItemClassification
 
 class ScavengerHuntWorld(World):
     """IRL Scavenger Hunt in Archipelago"""
