@@ -4,10 +4,10 @@ from Options import FreeText, Range, PerGameCommonOptions, OptionDict
 from worlds.scavenger_hunt.custom_check_schema import custom_check_schema
 
 
-def isPositiveNumber(val):
+def is_positive_number(val):
     try:
-        asNum = float(val)
-        return asNum > 0
+        as_num = float(val)
+        return as_num > 0
     except:
         return False
 
@@ -17,7 +17,7 @@ class TotalTransitFare(FreeText):
     default = 1000
 
     def __init__(self, value: str):
-        if not isPositiveNumber(value):
+        if not is_positive_number(value):
             raise Exception("Total Transit Fare should be a positive number.")
         super().__init__(value)
 
@@ -28,11 +28,21 @@ class CurrencyName(FreeText):
     
 
 class CurrencyGranularity(Range):
-    # Number of decimal points to round currency items to. Useful for currencies that have fractional values, like Dollars and cents. 0 will only include whole values. 2 will have 2 decimal places.
+    # Number of decimal points to round currency items to. Useful for currencies that have fractional values,
+    # like Dollars and cents. 0 will only include whole values. 2 will have 2 decimal places.
     display_name = "Currency Granularity"
     default = 0
     range_start = 0
     range_end = 2
+
+class FillerRatio(Range):
+    # Percentange of checks (after important items have been placed) that will contain filler items.
+    # The remainder will contain transit fare.
+    display_name = "Filler Ratio"
+    default = 75
+    range_start = 0
+    range_end = 100
+
 
 class Checks(OptionDict):
     # A list of all checks that can be done
@@ -44,6 +54,9 @@ class Checks(OptionDict):
         "Decorative Manhole Cover": {"found_indoors": False, "found_outdoors": True},
         "Station Stamp": {"found_indoors": True, "found_outdoors": False},
         "Two of the same store in eyesight": {"found_indoors": False, "found_outdoors": True},
+        "Walk 1000 steps": {"found_indoors": True, "found_outdoors": True}, # TODO: add dependencies
+        "Walk 2500 steps": {"found_indoors": True, "found_outdoors": True},
+        "Walk 5000 steps": {"found_indoors": True, "found_outdoors": True},
     }
 
 
@@ -54,3 +67,4 @@ class ScavengerHuntOptions(PerGameCommonOptions):
     currency_name: CurrencyName
     currency_granularity: CurrencyGranularity
     checks: Checks
+    filler_ratio: FillerRatio
