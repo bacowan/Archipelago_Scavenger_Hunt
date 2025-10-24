@@ -183,7 +183,7 @@ def get_dungeon_item_pool(multiworld: MultiWorld) -> typing.List[ALttPItem]:
 def get_dungeon_item_pool_player(world) -> typing.List[ALttPItem]:
     return [item
             for dungeon in world.dungeons.values()
-            for item in dungeon.all_items]
+            for item in dungeon.item_classifications]
 
 
 def get_unfilled_dungeon_locations(multiworld: MultiWorld) -> typing.List[ALttPLocation]:

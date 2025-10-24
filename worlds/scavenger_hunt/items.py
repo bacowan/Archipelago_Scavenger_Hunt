@@ -21,14 +21,7 @@ filler_items = [
     "Joke"
 ]
 
-item_classifications: dict[str, ItemClassification] = {
-    "Small Transit Fare": ItemClassification.progression_skip_balancing,
-    "Large Transit Fare": ItemClassification.progression_skip_balancing,
-    "Indoor Key": ItemClassification.progression,
-    "GPS": ItemClassification.progression
-}
-
-all_items = {
+item_classifications = {
     **{ name: ItemClassification.progression for name in progression_items },
     **{ name: ItemClassification.progression_skip_balancing for name in money_items },
     **{ name: ItemClassification.filler for name in filler_items }

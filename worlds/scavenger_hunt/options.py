@@ -49,14 +49,14 @@ class Checks(OptionDict):
     display_name = "Checks"
     schema = custom_check_schema
     default = {
-        "Capsule machine purchase": { "found_indoors": True, "found_outdoors": True },
-        "Convenience store purchase": {"found_indoors": True, "found_outdoors": False},
-        "Decorative Manhole Cover": {"found_indoors": False, "found_outdoors": True},
-        "Station Stamp": {"found_indoors": True, "found_outdoors": False},
-        "Two of the same store in eyesight": {"found_indoors": False, "found_outdoors": True},
-        "Walk 1000 steps": {"found_indoors": True, "found_outdoors": True}, # TODO: add dependencies
-        "Walk 2500 steps": {"found_indoors": True, "found_outdoors": True},
-        "Walk 5000 steps": {"found_indoors": True, "found_outdoors": True},
+        "Capsule machine purchase": { "found_outdoors": True },
+        "Convenience store purchase": {"found_outdoors": False},
+        "Decorative Manhole Cover": {"found_outdoors": True},
+        "Station Stamp": {"found_outdoors": False},
+        "Two of the same store in eyesight": {"found_outdoors": True},
+        "Walk 1000 steps": {"found_outdoors": True}, # TODO: add dependencies
+        "Walk 2500 steps": {"found_outdoors": True},
+        "Walk 5000 steps": {"found_outdoors": True},
     }
 
 
