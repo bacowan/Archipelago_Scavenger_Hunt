@@ -1,5 +1,5 @@
 import settings
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, TextIO
 import math
 import random
 from worlds.scavenger_hunt.constants import LARGE_TRANSIT_FARE_COEFFICIENT, SMALL_TO_LARGE_TRANSIT_FARE_COUNT_RATIO
@@ -109,3 +109,9 @@ class ScavengerHuntWorld(World):
     def set_rules(self) -> None:
         set_rule(self.multiworld.get_entrance("Outside -> Inside", self.player),
                  lambda state: state.has("Indoor Key", self.player))
+
+    def write_spoiler_end(self, spoiler_handle: TextIO) -> None:
+        # write the names of all the checks in the spoiler log for clarity
+        spoiler_handle.write("\n\n" + self.player_name + " Check values:\n\n")
+        for location_name, display_name in self.location_name_to_display_name.items():
+            spoiler_handle.write(location_name + ": " + display_name + "\n")
