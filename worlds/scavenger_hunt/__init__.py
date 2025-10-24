@@ -2,6 +2,9 @@ import settings
 from typing import TYPE_CHECKING, TextIO
 import math
 import random
+import json
+import os
+from io import StringIO
 from worlds.scavenger_hunt.constants import LARGE_TRANSIT_FARE_COEFFICIENT, SMALL_TO_LARGE_TRANSIT_FARE_COUNT_RATIO
 from .options import ScavengerHuntOptions
 from .items import item_classifications, ScavengerHuntItem, filler_items
@@ -115,3 +118,9 @@ class ScavengerHuntWorld(World):
         spoiler_handle.write("\n\n" + self.player_name + " Check values:\n\n")
         for location_name, display_name in self.location_name_to_display_name.items():
             spoiler_handle.write(location_name + ": " + display_name + "\n")
+
+    def generate_output(self, output_directory: str) -> None:
+        # Generate an output file for the app to use
+        filename = f"{self.multiworld.get_out_file_name_base(self.player)}.apscavengerhunt"
+        with open(os.path.join(output_directory, filename), 'w') as f:
+            json.dump(self.location_name_to_display_name, f)
