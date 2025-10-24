@@ -8,6 +8,7 @@ from .items import item_classifications, ScavengerHuntItem, filler_items
 from .locations import all_locations
 from worlds.AutoWorld import World
 from BaseClasses import Region
+from worlds.generic.Rules import add_rule, set_rule, forbid_item, add_item_rule
 
 if TYPE_CHECKING:
     from BaseClasses import MultiWorld
@@ -61,6 +62,7 @@ class ScavengerHuntWorld(World):
 
         outside.connect(inside)
 
+
         self.multiworld.regions.extend(regions)
 
     def create_items(self) -> None:
@@ -103,3 +105,7 @@ class ScavengerHuntWorld(World):
 
         # add to the world
         self.multiworld.itempool += res
+
+    def set_rules(self) -> None:
+        set_rule(self.multiworld.get_entrance("Outside -> Inside", self.player),
+                 lambda state: state.has("Indoor Key", self.player))

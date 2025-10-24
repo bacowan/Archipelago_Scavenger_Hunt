@@ -54,7 +54,7 @@ class Checks(OptionDict):
         "Decorative Manhole Cover": {"found_outdoors": True},
         "Station Stamp": {"found_outdoors": False},
         "Two of the same store in eyesight": {"found_outdoors": True},
-        "Walk 1000 steps": {"found_outdoors": True}, # TODO: add dependencies
+        "Walk 1000 steps": {"found_outdoors": True},
         "Walk 2500 steps": {"found_outdoors": True},
         "Walk 5000 steps": {"found_outdoors": True},
     }
