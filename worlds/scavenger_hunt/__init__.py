@@ -12,6 +12,7 @@ from .locations import all_locations
 from worlds.AutoWorld import World
 from BaseClasses import Region
 from worlds.generic.Rules import add_rule, set_rule, forbid_item, add_item_rule
+from .container import ScavengerHuntPlayerContainer
 
 if TYPE_CHECKING:
     from BaseClasses import MultiWorld
@@ -121,6 +122,10 @@ class ScavengerHuntWorld(World):
 
     def generate_output(self, output_directory: str) -> None:
         # Generate an output file for the app to use
-        filename = f"{self.multiworld.get_out_file_name_base(self.player)}.apscavengerhunt"
-        with open(os.path.join(output_directory, filename), 'w') as f:
-            json.dump(self.location_name_to_display_name, f)
+        mod = ScavengerHuntPlayerContainer(
+            self.location_name_to_display_name,
+            self.multiworld.get_out_file_name_base(self.player),
+            output_directory,
+            self.player,
+            self.multiworld.get_file_safe_player_name(self.player))
+        mod.write()
