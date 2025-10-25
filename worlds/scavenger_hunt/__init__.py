@@ -48,6 +48,7 @@ class ScavengerHuntWorld(World):
         self.location_name_to_display_name = {i: name for name, i in self.display_name_to_location_name.items()}
 
     def fill_slot_data(self) -> Mapping[str, Any]:
+        # this will be sent to the client on connect so that it knows the correct location names
         return self.display_name_to_location_name
 
     def create_regions(self) -> None:
