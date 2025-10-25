@@ -1,5 +1,5 @@
 import settings
-from typing import TYPE_CHECKING, TextIO
+from typing import TYPE_CHECKING, TextIO, Mapping, Any
 import math
 import random
 import json
@@ -46,6 +46,9 @@ class ScavengerHuntWorld(World):
     def generate_early(self):
         self.display_name_to_location_name = {name: "Check " + str(i) for i, name in enumerate(self.options.checks.value.keys(), 1)}
         self.location_name_to_display_name = {i: name for name, i in self.display_name_to_location_name.items()}
+
+    def fill_slot_data(self) -> Mapping[str, Any]:
+        return self.display_name_to_location_name
 
     def create_regions(self) -> None:
         regions = []
